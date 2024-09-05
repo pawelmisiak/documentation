@@ -4327,6 +4327,22 @@ menu:
           - ListApmRetentionFilters
         unstable: []
         order: 1
+    - name: ASM Exclusion Filters
+      url: /api/latest/asm-exclusion-filters/
+      identifier: asm-exclusion-filters
+      generated: true
+    - name: List ASM Exclusion Filters
+      url: '#list-asm-exclusion-filters'
+      identifier: asm-exclusion-filters-list-asm-exclusion-filters
+      parent: asm-exclusion-filters
+      generated: true
+      params:
+        versions:
+          - v2
+        operationids:
+          - ListASMExclusionFilters
+        unstable: []
+        order: 1
     - name: Audit
       url: /api/latest/audit/
       identifier: audit

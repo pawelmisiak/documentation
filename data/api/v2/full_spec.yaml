@@ -944,6 +944,35 @@ components:
       type: string
       x-enum-varnames:
       - API_KEYS
+    ASMExclusionFilter:
+      description: Provides a Datadog ASM WAF Exclusion Filters API resource.
+      properties:
+        description:
+          description: A description for the exclusion filter.
+          example: Ignore certain requests
+          type: string
+        enabled:
+          description: Indicates whether the exclusion filter is enabled.
+          example: true
+          type: boolean
+        id:
+          description: The ID of the exclusion filter.
+          example: ef12345
+          type: string
+        search_query:
+          description: The search query for the exclusion filter.
+          example: user_agent:Chrome
+          type: string
+      type: object
+    ASMExclusionFilterResponse:
+      description: Response object containing a list of ASM WAF exclusion filters.
+      properties:
+        data:
+          description: The ASMExclusionFilterResponse data.
+          items:
+            $ref: '#/components/schemas/ASMExclusionFilter'
+          type: array
+      type: object
     AWSRelatedAccount:
       description: AWS related account.
       properties:
@@ -35549,6 +35578,27 @@ paths:
         We are gradually onboarding support for more sources. If you have any
 
         feedback, contact [Datadog Support](https://docs.datadoghq.com/help/).'
+  /api/v2/remote_config/products/asm/waf/exclusion_filters:
+    get:
+      description: Retrieve a list of ASM exclusion filters.
+      operationId: ListASMExclusionFilters
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ASMExclusionFilterResponse'
+          description: OK
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: List ASM Exclusion Filters
+      tags:
+      - ASM Exclusion Filters
+      x-menu-order: 1
+      x-undo:
+        type: safe
   /api/v2/remote_config/products/cws/agent_rules:
     get:
       description: Get the list of Cloud Security Management Threats Agent rules.
@@ -42270,6 +42320,10 @@ tags:
     description: Find out more at
     url: https://docs.datadoghq.com/tracing/trace_pipeline/trace_retention/
   name: APM Retention Filters
+- description: Exclusion Filters in the ASM libraries are used to circumvent protection
+    False Positives. See [ASM Exclusion Filters](https://datadoghq.atlassian.net/wiki/spaces/Attacks/pages/2757197949/Exclusion+Filter+to+search+exclusion)
+    for more information.
+  name: ASM Exclusion Filters
 - description: Search your Audit Logs events over HTTP.
   name: Audit
 - description: '[The AuthN Mappings API](https://docs.datadoghq.com/account_management/authn_mapping/?tab=example)

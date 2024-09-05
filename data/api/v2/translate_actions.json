@@ -1087,6 +1087,10 @@
     "request_description": "",
     "request_schema_description": "A request wrapper around a single timeseries query to be executed."
   },
+  "ListASMExclusionFilters": {
+    "description": "Retrieve a list of ASM exclusion filters.",
+    "summary": "List ASM Exclusion Filters"
+  },
   "ListCSMThreatsAgentRules": {
     "description": "Get the list of Cloud Security Management Threats Agent rules.",
     "summary": "Get all CSM Threats Agent rules"
